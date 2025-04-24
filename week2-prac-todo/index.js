@@ -168,7 +168,7 @@ addBtn.addEventListener('click', (e) => {
     }
 
     let newTodo = {
-      id: todos[todos.length - 1].id + 1,
+      id: Math.max(...todos.map(todo => todo.id)),
       title: value,
       completed: false,
       priority: Number(priorityValue)

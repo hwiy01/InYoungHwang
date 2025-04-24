@@ -32,9 +32,10 @@ section{
 }
 
 .todo-table > thead > tr > th {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 16px;
     padding: 3px;
+    color: rgb(23, 70, 82);
 }
 
 .todo-table th:nth-child(1) { width: 70px; }     /* 체크박스 열 */

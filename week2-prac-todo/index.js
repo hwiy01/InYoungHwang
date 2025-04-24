@@ -193,3 +193,15 @@ deleteBtn.addEventListener('click', () => {
 
   renderTodoList(todos);
 })
+
+completeBtn.addEventListener('click', () => {
+  const checkedIds = getCheckedTodoIds();
+  
+  todos.forEach(todo =>{
+    if(checkedIds.includes(todo.id)){
+      todo.completed = true;
+  }})
+
+  localStorage.setItem('todos', JSON.stringify(todos));
+  renderTodoList(todos);
+})

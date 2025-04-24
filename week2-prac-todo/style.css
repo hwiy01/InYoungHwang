@@ -15,6 +15,7 @@ button {
     cursor: pointer;
     height: 30px;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .todo-filter-button-group{

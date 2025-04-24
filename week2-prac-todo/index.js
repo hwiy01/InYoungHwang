@@ -196,11 +196,24 @@ deleteBtn.addEventListener('click', () => {
 
 completeBtn.addEventListener('click', () => {
   const checkedIds = getCheckedTodoIds();
+  let includeAlreadyCompleted = false;
   
   todos.forEach(todo =>{
-    if(checkedIds.includes(todo.id)){
+    if(checkedIds.includes(todo.id) && todo.completed == true){
+      includeAlreadyCompleted = true;
+   }})
+
+   if(includeAlreadyCompleted){
+    alert('이미 완료된 투두가 포함되어 있습니다');
+    window.location.reload();
+    return;
+   }
+
+   todos.forEach(todo => {
+    if (checkedIds.includes(todo.id)) {
       todo.completed = true;
-  }})
+    }
+  })
 
   localStorage.setItem('todos', JSON.stringify(todos));
   renderTodoList(todos);

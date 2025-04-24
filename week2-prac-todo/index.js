@@ -23,6 +23,20 @@ document.addEventListener('click', () => {
   dropdown.classList.remove('active');
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const checkAll = document.querySelector('#check-all');
+
+  checkAll.addEventListener('change', (e) => {
+    const isChecked = e.target.checked;
+
+    const rowCheckboxes = document.querySelectorAll('.todo-list input[type="checkbox"]');
+
+    rowCheckboxes.forEach(checkbox => {
+      checkbox.checked = isChecked;
+    });
+  });
+});
+
 
 // 로컬스토리지에서 가져오기
 const storedTodos = JSON.parse(localStorage.getItem('todos') || '[]');
@@ -131,12 +145,12 @@ addBtn.addEventListener('click', (e) => {
     const priorityValue = prioritySelect.value;
 
     if(!value){
-        alert('할 일을 입력하세요!!!!');
+        alert('할 일을 입력하세요');
         return;
     }
 
     if(isNaN(priorityValue)){
-      alert('중요도도 선택하세요!!!!');
+      alert('중요도를 선택하세요');
       return;
     }
 

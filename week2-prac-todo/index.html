@@ -4,17 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <h2>To Do List</h2>
-    <form>
-        <input class="todo-input" type="text" />
-        <button class="add-btn">추가</button>
-    </form>
-    <h3>목록</h3>
-    <ul class="todo-list">
-        
-    </ul>
+    <main>
+        <h2>TODO LIST</h2>
+            <section>
+                <div class="todo-input-group">
+                    <input class="todo-input" type="text" placeholder="할 일을 입력하세요" />
+                    <select>
+                        <option>중요도 선택</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                    <button class="add-btn">추가</button>
+                </div>
+                <div class="todo-control-button-group">
+                    <button>삭제</button>
+                    <button>완료</button>
+                </div>
+
+                <table class="todo-table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" /></th>
+                            <th>중요도</th>
+                            <th>완료됨</th>
+                            <th>할 일</th>
+                        </tr>
+                    </thead>
+                    <tbody class="todo-list">
+
+                    </tbody>
+                </table>
+            <ul class="todo-list">
+                
+            </ul>
+        </section>
+    </main>
     <script type="module" src="index.js"></script>
 </body>
 </html>

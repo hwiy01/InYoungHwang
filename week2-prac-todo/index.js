@@ -205,7 +205,6 @@ completeBtn.addEventListener('click', () => {
 
    if(includeAlreadyCompleted){
     alert('이미 완료된 투두가 포함되어 있습니다');
-    window.location.reload();
     return;
    }
 

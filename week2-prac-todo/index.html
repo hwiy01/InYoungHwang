@@ -9,6 +9,19 @@
 <body>
     <main>
         <h2>TODO LIST</h2>
+            <nav class="todo-filter-button-group">
+                <button>전체</button>
+                <button>완료됨</button>
+                <button>미완료</button>
+                <div class="dropdown">
+                    <button class="dropdown-toggle">중요도 ▼</button>
+                    <ul class="dropdown-menu" id="priority">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+            </div>
+            </nav>
             <section>
                 <div class="todo-input-group">
                     <input class="todo-input" type="text" placeholder="할 일을 입력하세요" />
@@ -35,7 +48,7 @@
                         </tr>
                     </thead>
                     <tbody class="todo-list">
-                        
+
                     </tbody>
                 </table>
             <ul class="todo-list">

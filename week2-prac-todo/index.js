@@ -4,6 +4,18 @@ import { initTodos } from "./data.js";
 const input = document.querySelector('.todo-input');
 const addBtn = document.querySelector('.add-btn');
 const todoList = document.querySelector('.todo-list');
+const dropdown = document.querySelector('.dropdown');
+const toggle = document.querySelector('.dropdown-toggle');
+
+toggle.addEventListener('click', (e) => {
+  e.stopPropagation(); // 상위 이벤트 전파 방지
+  dropdown.classList.toggle('active');
+});
+
+document.addEventListener('click', () => {
+  dropdown.classList.remove('active');
+});
+
 
 // 로컬스토리지에서 가져오기
 const storedTodos = JSON.parse(localStorage.getItem('todos') || '[]');

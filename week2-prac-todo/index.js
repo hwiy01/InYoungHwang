@@ -2,6 +2,7 @@ import { initTodos } from "./data.js";
 
 // 요소 선택 !!!
 const input = document.querySelector('.todo-input');
+const prioritySelect = document.querySelector('.priority-input');
 const addBtn = document.querySelector('.add-btn');
 const todoList = document.querySelector('.todo-list');
 const dropdown = document.querySelector('.dropdown');
@@ -36,9 +37,12 @@ const todos = [
 localStorage.setItem('todos', JSON.stringify(todos));
 
 // todos를 그리는 함수
-const renderTodoList = (todos) => {
-    todos.forEach((todo) => {
-      const tr = document.createElement('tr');
+const clearTodoList = () => {
+  todoList.innerHTML = '';
+}
+
+const createTodoTr = (todo) => {
+  const tr = document.createElement('tr');
       const tdCheckbox = document.createElement('td');
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
@@ -60,26 +64,33 @@ const renderTodoList = (todos) => {
       tr.appendChild(tdCompleted);
       tr.appendChild(tdTitle);
 
-      todoList.appendChild(tr);
+      return tr;
+}
+
+const renderTodoList = (todos) => {
+    clearTodoList();
+    todos.forEach((todo) => {
+      const newTodoTr = createTodoTr(todo);
+
+      todoList.appendChild(newTodoTr);
   });
 }
 
+const addTodo = (todo) => {
+  const newTodoTr = createTodoTr(todo);
+
+  todoList.appendChild(newTodoTr);
+}
 
 // 초기화 - 화면에 표시
 renderTodoList(todos);
 
 // 필터링 
-const clearTodoList = () => {
-  todoList.innerHTML = '';
-}
-
 filterEntire.addEventListener('click', ()=>{
-  clearTodoList();
   renderTodoList(todos);
 })
 
 filterCompleted.addEventListener('click', ()=>{
-  clearTodoList();
   let completedTodos = todos.filter(todo=>
     todo.completed == true
   )
@@ -87,7 +98,6 @@ filterCompleted.addEventListener('click', ()=>{
 })
 
 filterUncompleted.addEventListener('click', ()=>{
-  clearTodoList();
   let uncompletedTodos = todos.filter(todo=>
     todo.completed == false
   )
@@ -95,7 +105,6 @@ filterUncompleted.addEventListener('click', ()=>{
 })
 
 filterPriority1.addEventListener('click', ()=>{
-  clearTodoList();
   let priority1Todos = todos.filter(todo=>
     todo.priority == 1
   )
@@ -103,7 +112,6 @@ filterPriority1.addEventListener('click', ()=>{
 })
 
 filterPriority2.addEventListener('click', ()=>{
-  clearTodoList();
   let priority2Todos = todos.filter(todo=>
     todo.priority == 2
   )
@@ -111,7 +119,6 @@ filterPriority2.addEventListener('click', ()=>{
 })
 
 filterPriority3.addEventListener('click', ()=>{
-  clearTodoList();
   let priority3Todos = todos.filter(todo=>
     todo.priority == 3
   )
@@ -120,20 +127,33 @@ filterPriority3.addEventListener('click', ()=>{
 
 // 추가 버튼 클릭 이벤트
 addBtn.addEventListener('click', (e) => {
-  //   const value = input.value;
+    const value = input.value;
+    const priorityValue = prioritySelect.value;
 
-  //   if(!value){
-  //       return;
-  //   }
-  // // 리스트에 추가
-  //   const li = document.createElement('li');
-  //   li.textContent = value;
-  //   todoList.appendChild(li);
+    if(!value){
+        alert('할 일을 입력하세요!!!!');
+        return;
+    }
 
-  // // 로컬스토리지에 저장
-  //   todos.push(value);
-  //   localStorage.setItem('todos', JSON.stringify(todos));
+    if(!prioritySelect){
+      alert('중요도도 선택하세요!!!!');
+      return;
+    }
 
-  //   // input 값을 초기화
-  //   input.value = '';
+    let newTodo = {
+      id: todos[todos.length - 1].id + 1,
+      title: value,
+      completed: false,
+      priority: Number(priorityValue)
+    }
+    // 로컬스토리지에 저장
+    todos.push(newTodo);
+    addTodo(newTodo);
+
+    console.log(newTodo);
+
+    localStorage.setItem('todos', JSON.stringify(todos));
+
+    // input 값을 초기화
+    input.value = '';
 });

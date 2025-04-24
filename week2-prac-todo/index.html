@@ -9,20 +9,20 @@
 <body>
     <main>
         <h2>TODO LIST</h2>
-            <nav class="todo-filter-button-group">
-                <button>전체</button>
-                <button>완료됨</button>
-                <button>미완료</button>
-                <div class="dropdown">
-                    <button class="dropdown-toggle">중요도 ▼</button>
-                    <ul class="dropdown-menu" id="priority">
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                    </ul>
-            </div>
-            </nav>
             <section>
+                <nav class="todo-filter-button-group">
+                    <button id="filter-button-entire">전체</button>
+                    <button id="filter-button-completed">완료됨</button>
+                    <button id="filter-button-uncompleted">미완료</button>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">중요도 ▼</button>
+                        <ul class="dropdown-menu">
+                            <li id="filter-button-priority-1">1</li>
+                            <li id="filter-button-priority-2">2</li>
+                            <li id="filter-button-priority-3">3</li>
+                        </ul>
+                </div>
+                </nav>
                 <div class="todo-input-group">
                     <input class="todo-input" type="text" placeholder="할 일을 입력하세요" />
                     <select>

@@ -17,10 +17,12 @@ button {
     font-weight: 600;
 }
 
-nav{
+.todo-filter-button-group{
     display: flex;
     flex-direction: row;
-    gap: 6px;
+    gap: 8px;
+    margin-bottom: 10px;
+    align-self: flex-start;
 }
 
 .dropdown{
@@ -51,7 +53,7 @@ nav{
 
 .dropdown.active .dropdown-menu {
     display: block;
-  }
+}
 
 section{
     display: flex;

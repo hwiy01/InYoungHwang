@@ -6,6 +6,12 @@ const addBtn = document.querySelector('.add-btn');
 const todoList = document.querySelector('.todo-list');
 const dropdown = document.querySelector('.dropdown');
 const toggle = document.querySelector('.dropdown-toggle');
+const filterEntire = document.querySelector('#filter-button-entire');
+const filterCompleted = document.querySelector('#filter-button-completed');
+const filterUncompleted = document.querySelector('#filter-button-uncompleted');
+const filterPriority1 = document.querySelector('#filter-button-priority-1');
+const filterPriority2 = document.querySelector('#filter-button-priority-2');
+const filterPriority3 = document.querySelector('#filter-button-priority-3');
 
 toggle.addEventListener('click', (e) => {
   e.stopPropagation(); // 상위 이벤트 전파 방지
@@ -29,34 +35,88 @@ const todos = [
 
 localStorage.setItem('todos', JSON.stringify(todos));
 
+// todos를 그리는 함수
+const renderTodoList = (todos) => {
+    todos.forEach((todo) => {
+      const tr = document.createElement('tr');
+      const tdCheckbox = document.createElement('td');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = false;
+
+      tdCheckbox.appendChild(checkbox);
+
+      const tdPriority = document.createElement('td');
+      tdPriority.textContent = todo.priority;
+
+      const tdCompleted = document.createElement('td');
+      tdCompleted.textContent = todo.completed ? '✅' : '❌';
+
+      const tdTitle = document.createElement('td');
+      tdTitle.textContent = todo.title;
+
+      tr.appendChild(tdCheckbox);
+      tr.appendChild(tdPriority);
+      tr.appendChild(tdCompleted);
+      tr.appendChild(tdTitle);
+
+      todoList.appendChild(tr);
+  });
+}
+
 
 // 초기화 - 화면에 표시
-todos.forEach((todo) => {
-    const tr = document.createElement('tr');
-    const tdCheckbox = document.createElement('td');
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = false;
+renderTodoList(todos);
 
-    tdCheckbox.appendChild(checkbox);
+// 필터링 
+const clearTodoList = () => {
+  todoList.innerHTML = '';
+}
 
-    const tdPriority = document.createElement('td');
-    tdPriority.textContent = todo.priority;
+filterEntire.addEventListener('click', ()=>{
+  clearTodoList();
+  renderTodoList(todos);
+})
 
-    const tdCompleted = document.createElement('td');
-    tdCompleted.textContent = todo.completed ? '✅' : '❌';
+filterCompleted.addEventListener('click', ()=>{
+  clearTodoList();
+  let completedTodos = todos.filter(todo=>
+    todo.completed == true
+  )
+  renderTodoList(completedTodos);
+})
 
-    const tdTitle = document.createElement('td');
-    tdTitle.textContent = todo.title;
+filterUncompleted.addEventListener('click', ()=>{
+  clearTodoList();
+  let uncompletedTodos = todos.filter(todo=>
+    todo.completed == false
+  )
+  renderTodoList(uncompletedTodos);
+})
 
-    tr.appendChild(tdCheckbox);
-    tr.appendChild(tdPriority);
-    tr.appendChild(tdCompleted);
-    tr.appendChild(tdTitle);
+filterPriority1.addEventListener('click', ()=>{
+  clearTodoList();
+  let priority1Todos = todos.filter(todo=>
+    todo.priority == 1
+  )
+  renderTodoList(priority1Todos);
+})
 
-    todoList.appendChild(tr);
-});
+filterPriority2.addEventListener('click', ()=>{
+  clearTodoList();
+  let priority2Todos = todos.filter(todo=>
+    todo.priority == 2
+  )
+  renderTodoList(priority2Todos);
+})
 
+filterPriority3.addEventListener('click', ()=>{
+  clearTodoList();
+  let priority3Todos = todos.filter(todo=>
+    todo.priority == 3
+  )
+  renderTodoList(priority3Todos);
+})
 
 // 추가 버튼 클릭 이벤트
 addBtn.addEventListener('click', (e) => {

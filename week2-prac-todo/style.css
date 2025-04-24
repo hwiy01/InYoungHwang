@@ -26,9 +26,13 @@ section{
     border-radius: 10px;
 }
 
+.todo-table, .todo-table th, .todo-table td {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+  }
+
 .todo-table > thead{
     background-color: rgb(130, 175, 233);
-    table-layout: fixed;
 }
 
 .todo-table > thead > tr > th {
@@ -58,4 +62,11 @@ section{
     display: flex;
     align-self: flex-end;
     gap: 5px;
+}
+
+.todo-list > tr > td {
+    text-align: center;
+    white-space: nowrap;
+    padding: 8px;
+    background-color: rgb(250, 250, 250);
 }

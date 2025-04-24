@@ -135,7 +135,7 @@ addBtn.addEventListener('click', (e) => {
         return;
     }
 
-    if(!prioritySelect){
+    if(isNaN(priorityValue)){
       alert('중요도도 선택하세요!!!!');
       return;
     }
@@ -149,8 +149,6 @@ addBtn.addEventListener('click', (e) => {
     // 로컬스토리지에 저장
     todos.push(newTodo);
     addTodo(newTodo);
-
-    console.log(newTodo);
 
     localStorage.setItem('todos', JSON.stringify(todos));
 
